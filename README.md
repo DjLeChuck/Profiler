@@ -1,15 +1,13 @@
-Profiler, a standalone library for profiles your code
-===============================================
+Profiler
+========
 
-Profiler is a standalone library for profiles your code.
+Profiler is a standalone package to profile your code.
 
 ## Installation
 
 Just download and extract the package. Configures.
 
 ## Configuration
-
-All you have to do is to instantiate the profiler with a queries' array.
 
 All you have to do is to:
     * set the relative path of your library,
