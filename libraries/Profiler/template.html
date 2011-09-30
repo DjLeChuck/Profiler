@@ -1,0 +1,115 @@
+<div id="profiler" class="bottom-right">
+    <div id="profiler-menu">
+        <!-- Queries -->
+        <span id="profiler-menu-queries"
+            onclick="profiler_bar.show('profiler-queries', 'profiler-menu-queries');">
+            <?php echo is_array($sections['queries']) ? count($sections['queries']) : 0 ?>
+            requête(s)
+        </span>
+
+        <!-- Vars and Config -->
+        <span id="profiler-menu-vars"
+            onclick="profiler_bar.show('profiler-vars', 'profiler-menu-vars');">
+            Variables
+        </span>
+
+        <!-- Files -->
+        <span id="profiler-menu-files"
+            onclick="profiler_bar.show('profiler-files', 'profiler-menu-files');">
+            <?php echo is_array($sections['files']) ? count($sections['files']) : 0 ?>
+            fichier(s)
+        </span>
+
+        <a id="profiler-menu-exit"
+            onclick="profiler_bar.close(); return false;"></a>
+    </div>
+
+    <!-- Queries -->
+    <div id="profiler-queries" class="profiler-box">
+        <h2>Requête(s)</h2>
+        <?php if (is_array($sections['queries'])): ?>
+            <table class="main" cellspacing="0">
+            <?php foreach ($sections['queries'] as $key => $val): ?>
+                <tr>
+                    <td><?php echo $key ?></td>
+                    <td><?php echo $val ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        <?php
+        else:
+            echo $sections['queries'];
+        endif;
+        ?>
+    </div>
+
+    <!-- Vars and Config -->
+    <div id="profiler-vars" class="profiler-box">
+        <!-- User Data -->
+        <?php if (isset($sections['session'])) :?>
+                <h2>session</h2>
+                <?php if (is_array($sections['session'])): ?>
+                    <table class="main">
+                    <?php foreach ($sections['session'] as $key => $val) : ?>
+                        <tr>
+                            <td><?php echo $key ?></td>
+                            <td><?php echo $val ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </table>
+                <?php
+                else:
+                    echo $sections['session'];
+                endif;
+            endif;
+            ?>
+
+        <!-- The Rest -->
+        <?php
+        foreach (array('get', 'post') as $section):
+            if (isset($sections[$section])):
+        ?>
+                <h2><?php echo $section; ?></h2>
+                <?php if (is_array($sections[$section])) : ?>
+                    <table class="main">
+                    <?php foreach ($sections[$section] as $key => $val) : ?>
+                        <tr>
+                            <td><?php echo $key ?></td>
+                            <td><?php echo $val ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </table>
+                <?php
+                else:
+                    echo $sections[$section];
+                endif;
+            endif;
+        endforeach;
+        ?>
+    </div>
+
+    <!-- Files -->
+    <div id="profiler-files" class="profiler-box">
+        <h2>Fichier(s) chargé(s)</h2>
+        <?php if (is_array($sections['files'])): ?>
+            <table class="main">
+            <?php foreach ($sections['files'] as $key => $val): ?>
+                <tr>
+                    <td>
+                        <?php echo str_replace($fcPath, '', $val); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        <?php
+        else :
+            echo $sections['files'];
+        endif;
+        ?>
+    </div>
+</div>
+
+<link rel="stylesheet" media="screen" href="<?php echo $libraryPath; ?>style.css" />
+<script type="text/javascript" src="<?php echo $libraryPath; ?>mootools-core.js"></script>
+<script type="text/javascript" src="<?php echo $libraryPath; ?>mootools-more.js"></script>
+<script type="text/javascript" src="<?php echo $libraryPath; ?>script.js"></script>
