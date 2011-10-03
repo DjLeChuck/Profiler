@@ -8,17 +8,14 @@
  */
 class Profiler
 {
-    // Protected attributes for configuration
     protected   $frontControllerPath,
-                $thisFilePath;
-
-    // Protected attributes
-    protected   $get        = array(),
-                $post       = array(),
-                $session    = array(),
-                $queries    = array(),
-                $files      = array(),
-                $_sections  = array(),
+                $thisFilePath,
+                $get,
+                $post,
+                $session,
+                $queries,
+                $files,
+                $_sections,
 
                 $_available_sections = array(
                     'get',
@@ -30,11 +27,10 @@ class Profiler
     /**
      * Constructor
      *
-     * @param array $queriesArray An array of the excuted queries
+     * @param array $queriesArray An array of the executed queries
      */
     public function __construct($frontControllerPath, $thisFilePath, $queriesArray)
     {
-        // Configuration attributes
         $this->frontControllerPath  = $frontControllerPath;
         $this->thisFilePath         = $thisFilePath;
 
@@ -46,7 +42,7 @@ class Profiler
     }
 
     /**
-     * Displays the profiler informations
+     * Displays the profiler information
      */
     public function display()
     {
